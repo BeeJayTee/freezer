@@ -4,6 +4,8 @@ import QuantitySelector from "./QuantitySelector";
 import { useAddItem } from "../hooks/useAddProduct";
 
 const AddItem = () => {
+  const [isActive, setIsActive] = useState(null);
+
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState(0);
@@ -27,36 +29,53 @@ const AddItem = () => {
 
   return (
     <div>
-      {isLoading && <div>Loading</div>}
-      {error && <div>{error}</div>}
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <select
-          name="categories"
-          value={category}
-          onChange={(e) => handleCategoryChange(e)}
-          className="border px-4 py-2"
-        >
-          <option value="" disabled>
-            Select a Category
-          </option>
-          <option value="meat">Meat</option>
-          <option value="fish">Fish</option>
-          <option value="general">General</option>
-        </select>
-        <label className="flex flex-col w-fit text-xs uppercase">
-          Item Name
-          <input
-            type="text"
-            name="name"
-            placeholder="i.e. ground beef"
+      {!isActive && (
+        <div className="text-center">
+          <button
             className="border px-4 py-2"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <QuantitySelector amount={amount} setAmount={setAmount} />
-        <button className="border px-4 py-2">Submit</button>
-      </form>
+            onClick={(e) => setIsActive(true)}
+          >
+            Add Item
+          </button>
+        </div>
+      )}
+      {isActive && (
+        <div className="border w-[70vw] fixed bg-slate-100 left-1/4 top-1/4">
+          <button className="ml-2 p-2" onClick={(e) => setIsActive(null)}>
+            X
+          </button>
+          {isLoading && <div>Loading</div>}
+          {error && <div>{error}</div>}
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            className="flex justify-center mx-16"
+          >
+            <select
+              name="categories"
+              value={category}
+              onChange={(e) => handleCategoryChange(e)}
+              className="border px-4 py-2"
+            >
+              <option value="" disabled>
+                Select a Category
+              </option>
+              <option value="meat">Meat</option>
+              <option value="fish">Fish</option>
+              <option value="general">General</option>
+            </select>
+            <input
+              type="text"
+              name="name"
+              placeholder="i.e. ground beef"
+              className="border px-4 py-2"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <QuantitySelector amount={amount} setAmount={setAmount} />
+            <button className="border px-4 py-2">Submit</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
