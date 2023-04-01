@@ -21,10 +21,10 @@ const QuantitySelector = ({ amount, setAmount }) => {
 
   return (
     <div className="QuantitySelector">
-      <div className="flex border w-fit rounded-full text-xl">
+      <div className="flex border border-green-900 w-fit rounded-md text-xl">
         <div
-          className={`px-6 py-2 border-r rounded-l-full select-none hover:cursor-default ${
-            isDownMinus ? "bg-slate-200" : "bg-white"
+          className={`px-6 py-2 border-r border-r-green-900 rounded-l-md select-none hover:cursor-default ${
+            isDownMinus ? "bg-green-200" : "bg-green-100"
           }`}
           onClick={(e) => handleClick(e, "minus")}
           onMouseDown={(e) => toggleMouseMinus(e)}
@@ -34,8 +34,8 @@ const QuantitySelector = ({ amount, setAmount }) => {
         </div>
         <div className="num px-4 py-2">{amount}</div>
         <div
-          className={`px-6 py-2 border-l rounded-r-full select-none hover:cursor-default ${
-            isDownPlus ? "bg-slate-200" : ""
+          className={`px-6 py-2 border-l  border-l-green-900 rounded-r-md select-none hover:cursor-default ${
+            isDownPlus ? "bg-green-200" : "bg-green-100"
           }`}
           onClick={(e) => handleClick(e, "plus")}
           onMouseDown={(e) => toggleMousePlus(e)}

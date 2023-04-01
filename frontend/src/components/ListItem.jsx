@@ -56,26 +56,34 @@ const ListItem = ({ category, name, amount, id, setError }) => {
   };
 
   return (
-    <div className="border px-4 pb-4">
+    <div className="border-4 border-green-900 bg-green-100 px-4 pb-4">
       {!isDeleteActive && (
         <div>
-          <div className="my-2 text-xs uppercase text-slate-400">
+          <div className="my-2 text-xs uppercase text-stone-400">
             <p>{category}</p>
           </div>
           <div className="flex justify-between mb-4">
-            <p className="font-bold">{name}</p>
-            <p className="font-thin">{itemAmount}</p>
+            <p className="font-bold text-green-900">{name}</p>
+            <p className="text-stone-700">{itemAmount}</p>
           </div>
-          <div className="flex justify-center gap-x-6 bg-slate-200 px-8 py-2">
-            <button className="p-2" onClick={handleTake}>
+          <div className="flex justify-center gap-x-6 px-8 py-2">
+            <button
+              className="px-2 border-2 border-green-900 hover:bg-green-200 rounded-md"
+              onClick={handleTake}
+            >
               Take
             </button>
-            <button className="p-2" onClick={handleAdd}>
+            <button
+              className="px-2 py-0 border-2 border-green-900 hover:bg-green-200 rounded-md"
+              onClick={handleAdd}
+            >
               Add
             </button>
           </div>
           <div className="mt-2 text-xs text-right text-red-600">
-            <button onClick={checkDelete}>delete</button>
+            <button className="p-2" onClick={checkDelete}>
+              delete
+            </button>
           </div>
         </div>
       )}
@@ -90,7 +98,7 @@ const ListItem = ({ category, name, amount, id, setError }) => {
               <span className="font-bold">{name}</span>?
             </p>
           </div>
-          <div className="flex justify-center gap-x-2 bg-slate-200 px-8 py-2">
+          <div className="flex justify-center gap-x-2 px-8 py-2">
             <button className="p-2" onClick={(e) => setIsDeleteActive(null)}>
               cancel
             </button>

@@ -25,5 +25,5 @@ export const useAddItem = () => {
     }
     return json;
   };
-  return { addItem, error, isLoading };
+  return { addItem, error, setError, isLoading };
 };

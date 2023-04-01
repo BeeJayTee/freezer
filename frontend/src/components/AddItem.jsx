@@ -10,7 +10,7 @@ const AddItem = ({ size }) => {
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState(0);
 
-  const { addItem, error, isLoading } = useAddItem();
+  const { addItem, error, setError, isLoading } = useAddItem();
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
@@ -29,14 +29,15 @@ const AddItem = ({ size }) => {
 
   const handleCancel = () => {
     setIsActive(null);
+    setError(null);
   };
 
   return (
-    <div>
+    <div className="mb-4">
       {!isActive && (
         <div className="text-center">
           <button
-            className="border px-4 py-2"
+            className="border-4 border-green-900 rounded-md px-4 py-2 text-green-900 bg-green-400 hover:bg-green-500"
             onClick={(e) => setIsActive(true)}
           >
             Add Item
@@ -44,39 +45,46 @@ const AddItem = ({ size }) => {
         </div>
       )}
       {isActive && (
-        <div className="m-auto w-fit bg-slate-100">
-          <button className="ml-2 p-2" onClick={handleCancel}>
+        <div className="m-auto w-fit pb-8 border-8 border-green-900">
+          <button
+            className="ml-2 p-2 select-none text-green-900"
+            onClick={handleCancel}
+          >
             X
           </button>
           {isLoading && <div>Loading</div>}
           {error && <div>{error}</div>}
-          <form
-            onSubmit={(e) => handleSubmit(e)}
-            className="flex justify-center mx-16"
-          >
-            <select
-              name="categories"
-              value={category}
-              onChange={(e) => handleCategoryChange(e)}
-              className="border px-4 py-2"
-            >
-              <option value="" disabled>
-                Select a Category
-              </option>
-              <option value="meat">Meat</option>
-              <option value="fish">Fish</option>
-              <option value="general">General</option>
-            </select>
-            <input
-              type="text"
-              name="name"
-              placeholder="i.e. ground beef"
-              className="border px-4 py-2"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <QuantitySelector amount={amount} setAmount={setAmount} />
-            <button className="border px-4 py-2">Submit</button>
+          <form onSubmit={(e) => handleSubmit(e)} className="mx-16">
+            <legend className="font-bold text-stone-900">
+              Add an item to the freezer
+            </legend>
+            <fieldset className="flex gap-x-4 justify-center">
+              <select
+                name="categories"
+                value={category}
+                onChange={(e) => handleCategoryChange(e)}
+                className="border border-green-900 bg-green-100 rounded-md px-4 py-2"
+              >
+                <option value="" disabled>
+                  Select a Category
+                </option>
+                <option value="meat">Meat</option>
+                <option value="fish">Fish</option>
+                <option value="general">General</option>
+              </select>
+              <input
+                type="text"
+                name="name"
+                placeholder="i.e. ground beef"
+                className="border border-green-900 bg-green-100 rounded-md px-4 py-2"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <QuantitySelector amount={amount} setAmount={setAmount} />
+              <button className="border border-green-900 rounded-md px-4 py-2 bg-green-400 hover:bg-green-500">
+                Submit
+              </button>
+            </fieldset>
           </form>
         </div>
       )}
