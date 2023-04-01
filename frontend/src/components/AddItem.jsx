@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import QuantitySelector from "./QuantitySelector";
-import { useAddItem } from "../hooks/useAddProduct";
+import { useAddItem } from "../hooks/useAddItem";
 
 const AddItem = ({ size }) => {
   const [isActive, setIsActive] = useState(null);
@@ -27,7 +27,9 @@ const AddItem = ({ size }) => {
     }
   };
 
-  const handleCancel = () => {};
+  const handleCancel = () => {
+    setIsActive(null);
+  };
 
   return (
     <div>
