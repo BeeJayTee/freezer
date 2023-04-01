@@ -8,8 +8,8 @@ const getAllItems = async (req, res) => {
 
 const addItem = async (req, res) => {
   try {
-    const { name, amount } = req.body;
-    const item = await Item.create({ name, amount });
+    const { category, name, amount } = req.body;
+    const item = await Item.create({ category, name, amount });
     res.status(200).json(item);
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -1,9 +1,11 @@
+import List from "./components/List";
+import AddItem from "./components/AddItem";
+
 function App() {
   return (
     <div className="App">
-      <div>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      </div>
+      <AddItem />
+      <List />
     </div>
   );
 }
