@@ -3,7 +3,7 @@ import { useState } from "react";
 import QuantitySelector from "./QuantitySelector";
 import { useAddItem } from "../hooks/useAddProduct";
 
-const AddItem = () => {
+const AddItem = ({ size }) => {
   const [isActive, setIsActive] = useState(null);
 
   const [name, setName] = useState("");
@@ -27,6 +27,8 @@ const AddItem = () => {
     }
   };
 
+  const handleCancel = () => {};
+
   return (
     <div>
       {!isActive && (
@@ -40,8 +42,8 @@ const AddItem = () => {
         </div>
       )}
       {isActive && (
-        <div className="border w-[70vw] fixed bg-slate-100 left-1/4 top-1/4">
-          <button className="ml-2 p-2" onClick={(e) => setIsActive(null)}>
+        <div className="m-auto w-fit bg-slate-100">
+          <button className="ml-2 p-2" onClick={handleCancel}>
             X
           </button>
           {isLoading && <div>Loading</div>}
