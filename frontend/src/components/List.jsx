@@ -4,6 +4,7 @@ import ListItem from "./ListItem";
 
 const List = () => {
   const [items, setItems] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -15,9 +16,19 @@ const List = () => {
   }, []);
   return (
     <div>
-      {items.map((item, index) => (
-        <ListItem name={item.name} amount={item.amount} key={index} />
-      ))}
+      {error && <p>{error}</p>}
+      <div className="grid grid-cols-6 gap-x-8 auto-rows-fr">
+        {items.map((item, index) => (
+          <ListItem
+            category={item.category}
+            name={item.name}
+            amount={item.amount}
+            id={item._id}
+            key={index}
+            setError={setError}
+          />
+        ))}
+      </div>
     </div>
   );
 };

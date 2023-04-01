@@ -21,6 +21,7 @@ const AddItem = () => {
       setName("");
       setCategory("");
       setAmount(0);
+      window.location.reload(false);
     }
   };
 
