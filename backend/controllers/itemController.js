@@ -9,12 +9,26 @@ const getAllItems = async (req, res) => {
 };
 
 const addItem = async (req, res) => {
-  try {
-    const { category, name, amount } = req.body;
-    const item = await Item.create({ category, name, amount });
-    res.status(200).json(item);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  const { category, name, amount } = req.body;
+  let emptyFields = [];
+  if (!category) {
+    emptyFields.push("category");
+  }
+  if (!name) {
+    emptyFields.push("name");
+  }
+  if (amount === 0) {
+    emptyFields.push("amount");
+  }
+  if (emptyFields.length > 0) {
+    res.status(400).json({ error: "Please fill in empty fields", emptyFields });
+  } else {
+    try {
+      const item = await Item.create({ category, name, amount });
+      res.status(200).json(item);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   }
 };
 

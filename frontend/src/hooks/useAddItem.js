@@ -3,6 +3,7 @@ import { useState } from "react";
 export const useAddItem = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
 
   const addItem = async (category, name, amount) => {
     setIsLoading(true);
@@ -22,8 +23,9 @@ export const useAddItem = () => {
     if (!response.ok) {
       setIsLoading(false);
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
     return json;
   };
-  return { addItem, error, setError, isLoading };
+  return { addItem, error, setError, isLoading, emptyFields, setEmptyFields };
 };

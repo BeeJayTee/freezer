@@ -63,7 +63,7 @@ const ListItem = ({ category, name, amount, id, setError }) => {
             <p>{category}</p>
           </div>
           <div className="flex justify-between mb-4">
-            <p className="font-bold text-green-900">{name}</p>
+            <p className="font-bold text-xl text-green-900">{name}</p>
             <p className="text-stone-700">{itemAmount}</p>
           </div>
           <div className="flex justify-center gap-x-6 px-8 py-2">

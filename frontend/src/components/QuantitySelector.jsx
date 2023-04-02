@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const QuantitySelector = ({ amount, setAmount }) => {
+const QuantitySelector = ({ amount, setAmount, emptyFields }) => {
   const [isDownMinus, setIsDownMinus] = useState(false);
   const [isDownPlus, setIsDownPlus] = useState(false);
 
@@ -21,7 +21,11 @@ const QuantitySelector = ({ amount, setAmount }) => {
 
   return (
     <div className="QuantitySelector">
-      <div className="flex border border-green-900 w-fit rounded-md text-xl">
+      <div
+        className={`flex border ${
+          emptyFields.includes("amount") ? "border-red-600" : "border-green-900"
+        } w-fit rounded-md text-xl`}
+      >
         <div
           className={`px-6 py-2 border-r border-r-green-900 rounded-l-md select-none hover:cursor-default ${
             isDownMinus ? "bg-green-200" : "bg-green-100"
