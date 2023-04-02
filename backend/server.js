@@ -4,6 +4,7 @@ const app = express();
 const connectDB = require("./config/database");
 const cors = require("cors");
 const itemRoutes = require("./routes/items");
+const userRoutes = require("./routes/users");
 
 // middleware
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
 
 // middleware routes
 app.use("/items", itemRoutes);
+app.use("/users", userRoutes);
 
 connectDB();
 app.listen(process.env.PORT || 4141, () => [
