@@ -1,7 +1,9 @@
 const Item = require("../models/itemModel");
 
 const getAllItems = async (req, res) => {
-  const products = await Item.find({}).sort({ createdAt: 1 });
+  const products = await Item.find({})
+    .collation({ locale: "en", strength: 2 })
+    .sort({ name: 1 });
 
   res.status(200).json(products);
 };

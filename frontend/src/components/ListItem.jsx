@@ -56,7 +56,7 @@ const ListItem = ({ category, name, amount, id, setError }) => {
   };
 
   return (
-    <div className="border-4 border-green-900 bg-green-100 px-4 pb-4">
+    <div className="border-4 border-green-900 bg-green-100 px-4 pb-4 w-full">
       {!isDeleteActive && (
         <div>
           <div className="my-2 text-xs uppercase text-stone-400">
