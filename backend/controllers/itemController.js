@@ -24,7 +24,11 @@ const addItem = async (req, res) => {
     res.status(400).json({ error: "Please fill in empty fields", emptyFields });
   } else {
     try {
-      const item = await Item.create({ category, name, amount });
+      const item = await Item.create({
+        category,
+        name: name.toLowerCase(),
+        amount,
+      });
       res.status(200).json(item);
     } catch (err) {
       res.status(400).json({ error: err.message });
