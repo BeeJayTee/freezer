@@ -8,6 +8,10 @@ const {
   editItem,
   deleteItem,
 } = require("../controllers/itemController");
+const requireAuth = require("../middleware/requireAuth");
+
+// require auth
+router.use(requireAuth);
 
 router.get("/", getAllItems);
 

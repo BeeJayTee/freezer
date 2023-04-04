@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@email.com");
+  const [password, setPassword] = useState("ABCabc123!");
 
   const { login, error, isLoading } = useLogin();
 

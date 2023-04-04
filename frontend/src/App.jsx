@@ -11,9 +11,26 @@ import Signup from "./pages/Signup";
 import Login from "./pages/login";
 
 import { useLogout } from "./hooks/useLogout";
+import { useAuthContext } from "./hooks/useAuthContext";
+import { useEffect, useState } from "react";
 
 function App() {
   const { logout } = useLogout();
+  const { user } = useAuthContext();
+  const [userChecked, setUserChecked] = useState(null);
+
+  useEffect(() => {
+    setUserChecked(null);
+    const localUser = localStorage.getItem("user");
+
+    if (localUser) {
+      setTimeout(() => {
+        setUserChecked(true);
+      }, 100);
+    } else {
+      setUserChecked(true);
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -21,20 +38,23 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/"
-            element={
-              <div className="container m-auto mt-4">
-                <button className="ml-4 md:ml-0" onClick={(e) => logout()}>
-                  Logout
-                </button>
-                <AddItem />
-                <div>
-                  <List />
+          {user && userChecked && (
+            <Route
+              path="/"
+              element={
+                <div className="container m-auto mt-4">
+                  <button className="ml-4 md:ml-0" onClick={(e) => logout()}>
+                    Logout
+                  </button>
+                  <AddItem />
+                  <div>
+                    <List />
+                  </div>
                 </div>
-              </div>
-            }
-          />
+              }
+            />
+          )}
+          {!user && userChecked && <Route path="/" element={<Login />} />}
         </Routes>
       </Router>
     </div>
