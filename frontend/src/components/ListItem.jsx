@@ -11,14 +11,17 @@ const ListItem = ({ category, name, amount, id, setError }) => {
     setError(null);
     if (itemAmount > 1) {
       setItemAmount(itemAmount - 1);
-      const response = await fetch("http://localhost:4141/items/edit", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({ id, amount: itemAmount - 1 }),
-      });
+      const response = await fetch(
+        "https://freezer-inventory-app.onrender.com/items/edit",
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({ id, amount: itemAmount - 1 }),
+        }
+      );
       const json = await response.json();
       if (!response.ok) {
         return setError(json.error);
@@ -32,14 +35,17 @@ const ListItem = ({ category, name, amount, id, setError }) => {
   const handleAdd = async () => {
     setError(null);
     setItemAmount(itemAmount + 1);
-    const response = await fetch("http://localhost:4141/items/edit", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify({ id, amount: itemAmount + 1 }),
-    });
+    const response = await fetch(
+      "https://freezer-inventory-app.onrender.com/items/edit",
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ id, amount: itemAmount + 1 }),
+      }
+    );
     const json = await response.json();
     if (!response.ok) {
       return setError(json.error);
