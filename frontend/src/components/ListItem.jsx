@@ -73,63 +73,40 @@ const ListItem = ({ category, name, amount, id, setError }) => {
     window.location.reload(false);
     return console.log(json.message);
   };
-
   return (
-    <div className="border-4 border-green-900 bg-green-100 px-4 pb-4 w-full">
+    <tr className="border border-green-900 odd:bg-green-100 even:bg-stone-50 w-full">
+      <td className="py-4 ml-4 text-xs md:text-base">{category}</td>
+      <td className="py-4 w-32 md:w-fit font-bold text-md">{name}</td>
+      <td className="py-4 text-stone-700 font-bold">{itemAmount}</td>
       {!isDeleteActive && (
-        <div>
-          <div className="my-2 text-xs uppercase text-stone-400">
-            <p>{category}</p>
-          </div>
-          <div className="flex justify-between mb-4">
-            <p className="font-bold text-3xl md:text-xl text-green-900">
-              {name}
-            </p>
-            <p className="text-stone-700 text-xl">{itemAmount}</p>
-          </div>
-          <div className="flex justify-center gap-x-6 px-8 py-2">
-            <button
-              className="px-4 py-2 md:px-2 border-2 border-green-900 lg:hover:bg-green-200 rounded-md"
-              onClick={handleTake}
-            >
-              Take
-            </button>
-            <button
-              className="px-4 py-2 md:px-2 py-0 border-2 border-green-900 lg:hover:bg-green-200 rounded-md"
-              onClick={handleAdd}
-            >
-              Add
-            </button>
-          </div>
-          <div className="mt-2 text-xs text-right text-red-600">
-            <button className="p-2" onClick={checkDelete}>
-              delete
-            </button>
-          </div>
-        </div>
+        <td className="py-4 pr-4 flex justify-center gap-x-[5px] md:gap-x-4 text-sm md:text-base">
+          <button className="p-2" onClick={handleTake}>
+            Take
+          </button>
+          <button className="p-2" onClick={handleAdd}>
+            Add
+          </button>
+          <button className="p-2 text-red-600" onClick={checkDelete}>
+            delete
+          </button>
+        </td>
       )}
       {isDeleteActive && (
-        <div>
-          <div className="my-2 text-xs uppercase text-slate-400">
-            <p>{category}</p>
+        <td className="flex flex-col">
+          <div>
+            Delete <span className="font-bold">{name}</span>?
           </div>
-          <div className="flex justify-between mb-4">
-            <p>
-              Are you sure you want to delete{" "}
-              <span className="font-bold">{name}</span>?
-            </p>
-          </div>
-          <div className="flex justify-center gap-x-2 px-8 py-2">
+          <div>
             <button className="p-2" onClick={(e) => setIsDeleteActive(null)}>
               cancel
             </button>
-            <button className="p-2" onClick={handleDelete}>
+            <button className="p-2 text-red-600" onClick={handleDelete}>
               delete
             </button>
           </div>
-        </div>
+        </td>
       )}
-    </div>
+    </tr>
   );
 };
 

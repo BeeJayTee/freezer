@@ -55,18 +55,28 @@ const List = () => {
         </form>
       </div>
       {error && <p>{error}</p>}
-      <div className="px-2 md:px-0 grid md:grid-cols-4 lg:grid-cols-4 2xl:grid-cols-6 gap-4 auto-rows-fr">
-        {filteredResults.map((item, index) => (
-          <ListItem
-            category={item.category}
-            name={item.name}
-            amount={item.amount}
-            id={item._id}
-            key={index}
-            setError={setError}
-          />
-        ))}
-      </div>
+      <table className="table-auto w-full md:w-3/4 md:m-auto text-center">
+        <thead>
+          <tr>
+            <th className="">Category</th>
+            <th>Item</th>
+            <th>Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredResults.map((item, index) => (
+            <ListItem
+              category={item.category}
+              name={item.name}
+              amount={item.amount}
+              id={item._id}
+              key={index}
+              setError={setError}
+            />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

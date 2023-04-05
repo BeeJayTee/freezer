@@ -6,8 +6,6 @@ import {
 } from "react-router-dom";
 
 import MainContent from "./components/MainContent";
-import List from "./components/List";
-import AddItem from "./components/AddItem";
 import Signup from "./pages/Signup";
 import Login from "./pages/login";
 
