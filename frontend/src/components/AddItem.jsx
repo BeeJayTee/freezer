@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import QuantitySelector from "./QuantitySelector";
 import { useAddItem } from "../hooks/useAddItem";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const AddItem = () => {
   const [isActive, setIsActive] = useState(null);
@@ -12,6 +13,7 @@ const AddItem = () => {
 
   const { addItem, error, setError, isLoading, emptyFields, setEmptyFields } =
     useAddItem();
+  const { user } = useAuthContext();
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
@@ -19,12 +21,14 @@ const AddItem = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const item = await addItem(category, name, amount);
-    if (item.name) {
-      setName("");
-      setCategory("");
-      setAmount(0);
-      window.location.reload(false);
+    if (user) {
+      const item = await addItem(category, name, amount);
+      if (item.name) {
+        setName("");
+        setCategory("");
+        setAmount(0);
+        window.location.reload(false);
+      }
     }
   };
 

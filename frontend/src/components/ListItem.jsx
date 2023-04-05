@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ListItem = ({ category, name, amount, id, setError }) => {
   const [itemAmount, setItemAmount] = useState(amount);
   const [isDeleteActive, setIsDeleteActive] = useState(null);
+
+  const { user } = useAuthContext();
 
   const handleTake = async () => {
     setError(null);
@@ -10,7 +13,10 @@ const ListItem = ({ category, name, amount, id, setError }) => {
       setItemAmount(itemAmount - 1);
       const response = await fetch("http://localhost:4141/items/edit", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
         body: JSON.stringify({ id, amount: itemAmount - 1 }),
       });
       const json = await response.json();
@@ -28,7 +34,10 @@ const ListItem = ({ category, name, amount, id, setError }) => {
     setItemAmount(itemAmount + 1);
     const response = await fetch("http://localhost:4141/items/edit", {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
       body: JSON.stringify({ id, amount: itemAmount + 1 }),
     });
     const json = await response.json();
@@ -46,6 +55,7 @@ const ListItem = ({ category, name, amount, id, setError }) => {
     setError(null);
     const response = await fetch(`http://localhost:4141/items/delete/${id}`, {
       method: "DELETE",
+      headers: { Authorization: `Bearer ${user.token}` },
     });
     const json = response.json();
     if (!response.ok) {

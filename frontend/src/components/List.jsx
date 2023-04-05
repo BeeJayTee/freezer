@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 import ListItem from "./ListItem";
 
@@ -7,14 +8,20 @@ const List = () => {
   const [error, setError] = useState(null);
   const [filteredResults, setFilteredResults] = useState([]);
 
+  const { user } = useAuthContext();
+
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await fetch("http://localhost:4141/items");
+      const response = await fetch("http://localhost:4141/items", {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       const json = await response.json();
       setItems(json);
       setFilteredResults(json);
     };
-    fetchItems();
+    if (user) {
+      fetchItems();
+    }
   }, []);
 
   const handleCategoryChange = (e) => {
