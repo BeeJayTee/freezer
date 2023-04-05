@@ -11,7 +11,7 @@ export const useLogin = () => {
     setError(null);
 
     const response = await fetch(
-      "https://freezer-inventory-app.onrender.com/login",
+      "https://freezer-inventory-app.onrender.com/users/login",
       {
         method: "POST",
         headers: {
