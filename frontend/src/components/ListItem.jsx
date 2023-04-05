@@ -54,7 +54,7 @@ const ListItem = ({ category, name, amount, id, setError }) => {
   const handleDelete = async () => {
     setError(null);
     const response = await fetch(
-      `https://freezer-inventory-app.onrender.com/${id}`,
+      `https://freezer-inventory-app.onrender.com/items/delete${id}`,
       {
         method: "DELETE",
         headers: { Authorization: `Bearer ${user.token}` },
