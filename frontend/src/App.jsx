@@ -5,6 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import MainContent from "./components/MainContent";
 import List from "./components/List";
 import AddItem from "./components/AddItem";
 import Signup from "./pages/Signup";
@@ -36,25 +37,20 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          {user && userChecked && (
-            <Route
-              path="/"
-              element={
-                <div className="container m-auto mt-4">
-                  <button className="ml-4 md:ml-0" onClick={(e) => logout()}>
-                    Logout
-                  </button>
-                  <AddItem />
-                  <div>
-                    <List />
-                  </div>
-                </div>
-              }
-            />
-          )}
-          {!user && userChecked && <Route path="/" element={<Login />} />}
+          <Route
+            path="/signup"
+            element={!user && userChecked ? <Signup /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/login"
+            element={!user && userChecked ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/"
+            element={
+              user && userChecked ? <MainContent /> : <Navigate to="/login" />
+            }
+          />
         </Routes>
       </Router>
     </div>
