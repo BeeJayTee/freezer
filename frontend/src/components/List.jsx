@@ -12,9 +12,12 @@ const List = () => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const response = await fetch("http://localhost:4141/items", {
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
+      const response = await fetch(
+        "https://freezer-inventory-app.onrender.com/items",
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+        }
+      );
       const json = await response.json();
       setItems(json);
       setFilteredResults(json);

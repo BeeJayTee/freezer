@@ -53,10 +53,13 @@ const ListItem = ({ category, name, amount, id, setError }) => {
 
   const handleDelete = async () => {
     setError(null);
-    const response = await fetch(`http://localhost:4141/items/delete/${id}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${user.token}` },
-    });
+    const response = await fetch(
+      `https://freezer-inventory-app.onrender.com/${id}`,
+      {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${user.token}` },
+      }
+    );
     const json = response.json();
     if (!response.ok) {
       return setError(json.error);

@@ -12,18 +12,21 @@ export const useAddItem = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch("http://localhost:4141/items/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify({
-        category,
-        name,
-        amount,
-      }),
-    });
+    const response = await fetch(
+      "https://freezer-inventory-app.onrender.com/items/add",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          category,
+          name,
+          amount,
+        }),
+      }
+    );
     const json = await response.json();
     console.log(json);
     if (!response.ok) {
