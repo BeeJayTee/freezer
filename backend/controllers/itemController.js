@@ -1,7 +1,9 @@
 const Item = require("../models/itemModel");
 
 const getAllItems = async (req, res) => {
-  const products = await Item.find({})
+  const user_id = req.user._id;
+
+  const products = await Item.find({ user_id })
     .collation({ locale: "en", strength: 2 })
     .sort({ name: 1 });
 
@@ -24,10 +26,12 @@ const addItem = async (req, res) => {
     res.status(400).json({ error: "Please fill in empty fields", emptyFields });
   } else {
     try {
+      const user_id = req.user._id;
       const item = await Item.create({
         category,
         name: name.toLowerCase(),
         amount,
+        user_id,
       });
       res.status(200).json(item);
     } catch (err) {
