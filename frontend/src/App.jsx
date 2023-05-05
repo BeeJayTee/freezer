@@ -6,8 +6,6 @@ import {
 } from "react-router-dom";
 
 import MainContent from "./components/MainContent";
-import List from "./components/List";
-import AddItem from "./components/AddItem";
 import Signup from "./pages/Signup";
 import Login from "./pages/login";
 
@@ -31,6 +29,19 @@ function App() {
     } else {
       setUserChecked(true);
     }
+  }, []);
+
+  useEffect(() => {
+    const initiateRun = async () => {
+      setInterval(async () => {
+        const response = await fetch(
+          "https://freezer-inventory-app.onrender.com/items"
+        );
+        const json = await response.json();
+        console.log(json);
+      }, 5000);
+    };
+    initiateRun();
   }, []);
 
   return (
