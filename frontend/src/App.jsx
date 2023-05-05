@@ -31,6 +31,19 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    const initiateRun = async () => {
+      setInterval(async () => {
+        const response = await fetch(
+          "https://freezer-inventory-app.onrender.com/items"
+        );
+        const json = await response.json();
+        console.log(json);
+      }, 5000);
+    };
+    initiateRun();
+  }, []);
+
   return (
     <div className="App">
       <Router>
