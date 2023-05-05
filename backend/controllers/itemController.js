@@ -12,7 +12,10 @@ const getAllItems = async (req, res) => {
 
 const bumpItems = async (req, res) => {
   const id = req.params.id;
-  console.log(id);
+  if (id === "whyYWUpm79rMB2vtMzPK504tzOhdUU3L6YyB$cpBkXQ722y$xx") {
+    const products = await Item.find();
+    res.status(200).json({ message: "triggered" });
+  }
 };
 
 const addItem = async (req, res) => {
