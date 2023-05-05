@@ -5,6 +5,11 @@ const connectDB = require("./config/database");
 const cors = require("cors");
 const itemRoutes = require("./routes/items");
 const userRoutes = require("./routes/users");
+const cron = require("node-cron");
+
+cron.schedule("* * * * *", () => {
+  console.log("running a task every minute");
+});
 
 // middleware
 app.use(express.json());
