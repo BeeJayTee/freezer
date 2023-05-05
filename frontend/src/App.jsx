@@ -35,7 +35,7 @@ function App() {
     const initiateRun = async () => {
       setInterval(async () => {
         const response = await fetch(
-          "https://freezer-inventory-app.onrender.com/items"
+          "https://freezer-inventory-app.onrender.com/items/bump/whyYWUpm79rMB2vtMzPK504tzOhdUU3L6YyB$cpBkXQ722y$xx"
         );
         const json = await response.json();
         console.log(json);

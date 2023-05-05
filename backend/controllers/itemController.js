@@ -10,6 +10,11 @@ const getAllItems = async (req, res) => {
   res.status(200).json(products);
 };
 
+const bumpItems = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+};
+
 const addItem = async (req, res) => {
   const { category, name, amount } = req.body;
   let emptyFields = [];
@@ -60,4 +65,4 @@ const deleteItem = async (req, res) => {
   }
 };
 
-module.exports = { getAllItems, addItem, editItem, deleteItem };
+module.exports = { getAllItems, bumpItems, addItem, editItem, deleteItem };
