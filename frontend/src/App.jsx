@@ -39,7 +39,7 @@ function App() {
         );
         const json = await response.json();
         console.log(json);
-      }, 5000);
+      }, 600000);
     };
     initiateRun();
   }, []);
