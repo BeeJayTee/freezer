@@ -6,9 +6,12 @@ const cors = require("cors");
 const itemRoutes = require("./routes/items");
 const userRoutes = require("./routes/users");
 const cron = require("node-cron");
+const Item = require("./models/itemModel");
 
-cron.schedule("* * * * *", () => {
-  console.log("running a task every minute");
+cron.schedule("*/1 * * * *", async () => {
+  console.log("running a task every one minute");
+  const items = await Item.find();
+  console.log(items);
 });
 
 // middleware

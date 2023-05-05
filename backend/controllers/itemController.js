@@ -10,14 +10,6 @@ const getAllItems = async (req, res) => {
   res.status(200).json(products);
 };
 
-const bumpItems = async (req, res) => {
-  const id = req.params.id;
-  if (id === "whyYWUpm79rMB2vtMzPK504tzOhdUU3L6YyB$cpBkXQ722y$xx") {
-    const products = await Item.find();
-    res.status(200).json({ message: "triggered" });
-  }
-};
-
 const addItem = async (req, res) => {
   const { category, name, amount } = req.body;
   let emptyFields = [];
@@ -68,4 +60,4 @@ const deleteItem = async (req, res) => {
   }
 };
 
-module.exports = { getAllItems, bumpItems, addItem, editItem, deleteItem };
+module.exports = { getAllItems, addItem, editItem, deleteItem };

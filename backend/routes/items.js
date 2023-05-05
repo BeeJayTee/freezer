@@ -4,7 +4,6 @@ const router = express.Router();
 
 const {
   getAllItems,
-  bumpItems,
   addItem,
   editItem,
   deleteItem,
@@ -12,8 +11,6 @@ const {
 const requireAuth = require("../middleware/requireAuth");
 
 router.get("/", requireAuth, getAllItems);
-
-router.get("/bump/:id", bumpItems);
 
 router.post("/add", requireAuth, addItem);
 
