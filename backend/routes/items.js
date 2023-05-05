@@ -10,12 +10,15 @@ const {
 } = require("../controllers/itemController");
 const requireAuth = require("../middleware/requireAuth");
 
+// require auth
+router.use(requireAuth);
+
 router.get("/", getAllItems);
 
-router.post("/add", requireAuth, addItem);
+router.post("/add", addItem);
 
-router.patch("/edit", requireAuth, editItem);
+router.patch("/edit", editItem);
 
-router.delete("/delete/:id", requireAuth, deleteItem);
+router.delete("/delete/:id", deleteItem);
 
 module.exports = router;
