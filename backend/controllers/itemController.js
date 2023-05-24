@@ -65,6 +65,7 @@ const privatePing = async (req, res) => {
   if (secret === process.env.PRIVATE_SECRET) {
     const items = await Item.find();
     console.log("server pinged");
+    res.status(200).json({ message: "successful ping" });
   }
 };
 
