@@ -9,10 +9,10 @@ const cron = require("node-cron");
 const Item = require("./models/itemModel");
 const { privatePing } = require("./controllers/itemController");
 
-cron.schedule("*/1 * * * *", async () => {
-  privatePing();
-  console.log("ping");
-});
+// cron.schedule("*/1 * * * *", async () => {
+//   privatePing();
+//   console.log("ping");
+// });
 
 // middleware
 app.use(express.json());

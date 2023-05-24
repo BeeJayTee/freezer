@@ -14,7 +14,10 @@ const requireAuth = require("../middleware/requireAuth");
 router.get("/", requireAuth, getAllItems);
 
 // private ping
-router.get("/Ct6t6c#GOrdgJEhYOZSJtKUER4h9I8Q6PeRK6ZtSKtSX1fumXQ", privatePing);
+router.get(
+  "/KAtKqHbH3FaMixrLBYF0Z6FFoQZ4yFS6gCVz3PTZPfhIhviPSh/:secret",
+  privatePing
+);
 
 router.post("/add", requireAuth, addItem);
 

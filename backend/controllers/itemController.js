@@ -61,8 +61,11 @@ const deleteItem = async (req, res) => {
 };
 
 const privatePing = async (req, res) => {
-  const items = await Item.find();
-  console.log("server pinged");
+  const { secret } = req.params;
+  if (secret === process.env.PRIVATE_SECRET) {
+    const items = await Item.find();
+    console.log("server pinged");
+  }
 };
 
 module.exports = {
