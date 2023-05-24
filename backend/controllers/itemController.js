@@ -2,21 +2,23 @@ const Item = require("../models/itemModel");
 
 const getAllItems = async (req, res) => {
   const user_id = req.user._id;
+
+  const products = await Item.find({ user_id })
+    .collation({ locale: "en", strength: 2 })
+    .sort({ name: 1 });
+
+  res.status(200).json(products);
+};
+
+const getFilteredItems = async (req, res) => {
+  const user_id = req.user._id;
   const { category } = req.params;
 
-  if (category !== "") {
-    const products = await Item.find({ user_id, category })
-      .collation({ locale: "en", strength: 2 })
-      .sort({ name: 1 });
+  const products = await Item.find({ user_id, category })
+    .collation({ locale: "en", strength: 2 })
+    .sort({ name: 1 });
 
-    res.status(200).json(products);
-  } else {
-    const products = await Item.find({ user_id })
-      .collation({ locale: "en", strength: 2 })
-      .sort({ name: 1 });
-
-    res.status(200).json(products);
-  }
+  res.status(200).json(products);
 };
 
 const addItem = async (req, res) => {
@@ -69,4 +71,10 @@ const deleteItem = async (req, res) => {
   }
 };
 
-module.exports = { getAllItems, addItem, editItem, deleteItem };
+module.exports = {
+  getAllItems,
+  getFilteredItems,
+  addItem,
+  editItem,
+  deleteItem,
+};

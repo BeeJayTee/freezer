@@ -4,13 +4,16 @@ const router = express.Router();
 
 const {
   getAllItems,
+  getFilteredItems,
   addItem,
   editItem,
   deleteItem,
 } = require("../controllers/itemController");
 const requireAuth = require("../middleware/requireAuth");
 
-router.get("/:category", requireAuth, getAllItems);
+router.get("/", requireAuth, getAllItems);
+
+router.get("/filtered/:category", requireAuth, getFilteredItems);
 
 router.post("/add", requireAuth, addItem);
 
