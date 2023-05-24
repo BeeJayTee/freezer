@@ -60,9 +60,15 @@ const deleteItem = async (req, res) => {
   }
 };
 
+const privatePing = async (req, res) => {
+  const items = await Item.find();
+  console.log("server pinged");
+};
+
 module.exports = {
   getAllItems,
   addItem,
   editItem,
   deleteItem,
+  privatePing,
 };

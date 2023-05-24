@@ -7,10 +7,11 @@ const itemRoutes = require("./routes/items");
 const userRoutes = require("./routes/users");
 const cron = require("node-cron");
 const Item = require("./models/itemModel");
+const { privatePing } = require("./controllers/itemController");
 
 cron.schedule("*/1 * * * *", async () => {
-  Item.find();
-  console.log("poop");
+  privatePing();
+  console.log("ping");
 });
 
 // middleware
