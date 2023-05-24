@@ -8,8 +8,9 @@ const userRoutes = require("./routes/users");
 const cron = require("node-cron");
 const Item = require("./models/itemModel");
 
-cron.schedule("*/14 * * * *", async () => {
+cron.schedule("*/10 * * * *", async () => {
   Item.find();
+  console.log("poop");
 });
 
 // middleware
