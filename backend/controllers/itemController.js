@@ -62,7 +62,6 @@ const deleteItem = async (req, res) => {
 
 module.exports = {
   getAllItems,
-  getFilteredItems,
   addItem,
   editItem,
   deleteItem,
