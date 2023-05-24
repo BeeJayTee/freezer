@@ -10,17 +10,6 @@ const getAllItems = async (req, res) => {
   res.status(200).json(products);
 };
 
-const getFilteredItems = async (req, res) => {
-  const user_id = req.user._id;
-  const { category } = req.params;
-
-  const products = await Item.find({ user_id, category })
-    .collation({ locale: "en", strength: 2 })
-    .sort({ name: 1 });
-
-  res.status(200).json(products);
-};
-
 const addItem = async (req, res) => {
   const { category, name, amount } = req.body;
   let emptyFields = [];

@@ -4,7 +4,6 @@ const router = express.Router();
 
 const {
   getAllItems,
-  getFilteredItems,
   addItem,
   editItem,
   deleteItem,
@@ -12,8 +11,6 @@ const {
 const requireAuth = require("../middleware/requireAuth");
 
 router.get("/", requireAuth, getAllItems);
-
-router.get("/filtered/:category", requireAuth, getFilteredItems);
 
 router.post("/add", requireAuth, addItem);
 
