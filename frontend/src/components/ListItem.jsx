@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const ListItem = ({ category, name, amount, id, setError }) => {
-  const [itemAmount, setItemAmount] = useState(amount);
+const ListItem = ({ item, setError }) => {
+  const [itemAmount, setItemAmount] = useState(item.amount);
   const [isDeleteActive, setIsDeleteActive] = useState(null);
 
   const { user } = useAuthContext();
@@ -11,6 +11,7 @@ const ListItem = ({ category, name, amount, id, setError }) => {
     setError(null);
     if (itemAmount > 1) {
       setItemAmount(itemAmount - 1);
+      item.amount = item.amount - 1;
       const response = await fetch(
         "https://freezer-inventory-app.onrender.com/items/edit",
         {
@@ -19,14 +20,14 @@ const ListItem = ({ category, name, amount, id, setError }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${user.token}`,
           },
-          body: JSON.stringify({ id, amount: itemAmount - 1 }),
+          body: JSON.stringify({ id: item._id, amount: itemAmount - 1 }),
         }
       );
       const json = await response.json();
       if (!response.ok) {
         return setError(json.error);
       }
-      return console.log(json.message);
+      return;
     } else if (itemAmount === 1) {
       checkDelete();
     }
@@ -35,6 +36,7 @@ const ListItem = ({ category, name, amount, id, setError }) => {
   const handleAdd = async () => {
     setError(null);
     setItemAmount(itemAmount + 1);
+    item.amount = item.amount + 1;
     const response = await fetch(
       "https://freezer-inventory-app.onrender.com/items/edit",
       {
@@ -43,14 +45,14 @@ const ListItem = ({ category, name, amount, id, setError }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${user.token}`,
         },
-        body: JSON.stringify({ id, amount: itemAmount + 1 }),
+        body: JSON.stringify({ id: item._id, amount: itemAmount + 1 }),
       }
     );
     const json = await response.json();
     if (!response.ok) {
       return setError(json.error);
     }
-    return console.log(json.message);
+    return;
   };
 
   const checkDelete = () => {
@@ -60,7 +62,7 @@ const ListItem = ({ category, name, amount, id, setError }) => {
   const handleDelete = async () => {
     setError(null);
     const response = await fetch(
-      `https://freezer-inventory-app.onrender.com/items/delete/${id}`,
+      `https://freezer-inventory-app.onrender.com/items/delete/${item._id}`,
       {
         method: "DELETE",
         headers: { Authorization: `Bearer ${user.token}` },
@@ -75,9 +77,9 @@ const ListItem = ({ category, name, amount, id, setError }) => {
   };
   return (
     <tr className="border border-green-900 odd:bg-green-100 even:bg-stone-50 w-full">
-      <td className="py-4 ml-4 text-xs md:text-base">{category}</td>
-      <td className="py-4 w-32 md:w-fit font-bold text-md">{name}</td>
-      <td className="py-4 text-stone-700 font-bold">{itemAmount}</td>
+      <td className="py-4 ml-4 text-xs md:text-base">{item.category}</td>
+      <td className="py-4 w-32 md:w-fit font-bold text-md">{item.name}</td>
+      <td className="py-4 text-stone-700 font-bold">{item.amount}</td>
       {!isDeleteActive && (
         <td className="py-4 pr-4 flex justify-center gap-x-[5px] md:gap-x-4 text-sm md:text-base">
           <button className="p-2" onClick={handleTake}>
