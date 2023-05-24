@@ -10,7 +10,7 @@ const {
 } = require("../controllers/itemController");
 const requireAuth = require("../middleware/requireAuth");
 
-router.get("/", requireAuth, getAllItems);
+router.get("/:category", requireAuth, getAllItems);
 
 router.post("/add", requireAuth, addItem);
 

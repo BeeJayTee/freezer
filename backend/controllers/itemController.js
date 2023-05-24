@@ -2,12 +2,21 @@ const Item = require("../models/itemModel");
 
 const getAllItems = async (req, res) => {
   const user_id = req.user._id;
+  const { category } = req.params;
 
-  const products = await Item.find({ user_id })
-    .collation({ locale: "en", strength: 2 })
-    .sort({ name: 1 });
+  if (category !== "") {
+    const products = await Item.find({ user_id, category })
+      .collation({ locale: "en", strength: 2 })
+      .sort({ name: 1 });
 
-  res.status(200).json(products);
+    res.status(200).json(products);
+  } else {
+    const products = await Item.find({ user_id })
+      .collation({ locale: "en", strength: 2 })
+      .sort({ name: 1 });
+
+    res.status(200).json(products);
+  }
 };
 
 const addItem = async (req, res) => {
