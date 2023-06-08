@@ -8,7 +8,7 @@ const SearchBar = ({ filteredResults, setCurrent }) => {
         const nameArr = name.split(" ");
         let isIn = false;
         for (let n = 0; n < nameArr.length; n++) {
-          if (nameArr[n].startsWith(e.target.value)) {
+          if (nameArr[n].startsWith(searchValue)) {
             isIn = true;
           }
         }
@@ -17,7 +17,7 @@ const SearchBar = ({ filteredResults, setCurrent }) => {
       setCurrent(newFilteredItems);
     } else if (searchValue.split(" ").length > 1) {
       let newFilteredItems = [];
-      const queryArr = e.target.value.toLowerCase().split(" ");
+      const queryArr = searchValue.toLowerCase().split(" ");
       for (let i = 0; i < filteredResults.length; i++) {
         const every = queryArr.every((word) => {
           let nameArr = filteredResults[i].name.split(" ");
