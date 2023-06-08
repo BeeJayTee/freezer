@@ -18,10 +18,6 @@ const AddItem = () => {
     useAddItem();
   const { user } = useAuthContext();
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (user) {
@@ -39,6 +35,12 @@ const AddItem = () => {
     setIsActive(null);
     setError(null);
     setEmptyFields([]);
+    setName("");
+    setCategory("");
+    setAmount(1);
+    setMeatSelect(null);
+    setFishSelect(null);
+    setGeneralSelect(null);
   };
 
   const handleClick = (e) => {
@@ -67,7 +69,7 @@ const AddItem = () => {
       {!isActive && (
         <div className="text-center">
           <button
-            className="border-4 border-green-900 rounded-md px-4 py-2 text-green-900 bg-green-400 hover:bg-green-500"
+            className="border border-green-900 rounded-md px-4 py-2 text-green-900 bg-green-100 hover:bg-green-900 hover:text-white"
             onClick={(e) => setIsActive(true)}
           >
             Add Item
@@ -75,7 +77,7 @@ const AddItem = () => {
         </div>
       )}
       {isActive && (
-        <div className="m-auto w-fit pb-8 border-8 border-green-900">
+        <div className="m-auto w-fit pb-8 border border-green-900">
           <button
             className="ml-2 p-2 select-none text-green-900"
             onClick={handleCancel}
@@ -89,23 +91,6 @@ const AddItem = () => {
               Add an item to the freezer
             </legend>
             <fieldset className="flex flex-col gap-y-4 lg:flex-row gap-x-4 justify-center">
-              {/* <select
-                name="categories"
-                value={category}
-                onChange={(e) => handleCategoryChange(e)}
-                className={`border ${
-                  emptyFields.includes("category")
-                    ? "border-red-600"
-                    : "border-green-900"
-                } bg-green-100 rounded-md px-4 py-2`}
-              >
-                <option value="" disabled>
-                  Select a Category
-                </option>
-                <option value="meat">Meat</option>
-                <option value="fish">Fish</option>
-                <option value="general">General</option>
-              </select> */}
               {/* custom radio buttons */}
               <div className="flex justify-around gap-2">
                 <div
@@ -150,7 +135,7 @@ const AddItem = () => {
                 setAmount={setAmount}
                 emptyFields={emptyFields}
               />
-              <button className="border border-green-900 rounded-md px-4 py-2 bg-green-400 hover:bg-green-500">
+              <button className="border border-green-900 rounded-md px-4 py-2 text-green-900 bg-green-100 hover:bg-green-900 hover:text-white">
                 Submit
               </button>
             </fieldset>

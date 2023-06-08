@@ -52,7 +52,6 @@ const List = () => {
             setCurrent={setCurrent}
           />
           <form>
-            <p>filter results:</p>
             <select
               name="categories"
               onChange={(e) => handleCategoryChange(e)}
