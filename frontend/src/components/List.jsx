@@ -8,6 +8,7 @@ const List = () => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [current, setCurrent] = useState([]);
 
   const { user } = useAuthContext();
 
@@ -22,6 +23,7 @@ const List = () => {
       const json = await response.json();
       setItems(json);
       setFilteredResults(json);
+      setCurrent(json);
     };
     if (user) {
       fetchItems();
@@ -30,19 +32,25 @@ const List = () => {
 
   const handleCategoryChange = (e) => {
     if (e.target.value === "") {
-      return setFilteredResults(items);
+      setFilteredResults(items);
+      return setCurrent(items);
     }
     let results = items.filter((item) => {
       return item.category === e.target.value;
     });
     setFilteredResults(results);
+    setCurrent(results);
   };
 
   return (
     <div>
       <div className="flex justify-center">
         <div className="flex flex-col items-center">
-          <SearchBar items={items} />
+          <SearchBar
+            filteredResults={filteredResults}
+            setFilteredResults={setFilteredResults}
+            setCurrent={setCurrent}
+          />
           <form>
             <p>filter results:</p>
             <select
@@ -69,7 +77,7 @@ const List = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredResults.map((item, index) => (
+          {current.map((item, index) => (
             <ListItem item={item} key={index} setError={setError} />
           ))}
         </tbody>
