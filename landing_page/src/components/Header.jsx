@@ -11,7 +11,13 @@ const animation = `${animationKeyframes} 4s ease-in-out infinite`;
 
 const Header = () => {
   return (
-    <Box as="section" position={"relative"} zIndex={-1}>
+    <Box
+      as="section"
+      position={"relative"}
+      zIndex={-1}
+      height={["fit-content", "fit-content", "fit-content", "95vh"]}
+      minHeight={["300px", "400px", "400px", "500px", "600px"]}
+    >
       <Box
         as={motion.div}
         animation={animation}
@@ -44,7 +50,7 @@ const Header = () => {
       >
         <Box display={"flex"} height={"100%"}>
           <Heading
-            fontSize={["5xl", "6xl", "7xl", "8xl"]}
+            fontSize={["4xl", "5xl", "6xl", "7xl", "8xl"]}
             color={"brand.dark"}
             mt={["-50px", "-50px", 0]}
             textAlign={["center", "center", "right"]}

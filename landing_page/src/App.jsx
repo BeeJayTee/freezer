@@ -1,4 +1,5 @@
 import "./App.css";
+import Blurb from "./components/Blurb";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <Nav />
       <Header />
+      <Blurb />
     </>
   );
 }

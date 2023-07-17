@@ -17,6 +17,11 @@ const components = {
       color: "#061912",
     },
   },
+  Heading: {
+    baseStyle: {
+      color: "#061912",
+    },
+  },
 };
 
 const theme = extendTheme({ colors, components });
