@@ -5,18 +5,13 @@ const Nav = () => {
   return (
     <Box
       as="section"
-      py={[8]}
+      py={[2, 4]}
       px={[4, 16, 32]}
       mx={"auto"}
       bg={"brand.green"}
       boxShadow={"md"}
     >
-      <Flex
-        align={"center"}
-        justify={"space-between"}
-        // direction={["column", "column", "row"]}
-        maxW={"1400px"}
-      >
+      <Flex align={"center"} justify={"space-between"} maxW={"1400px"}>
         <Box w={"fit-content"}>
           <Link href="/">
             <Image src={logo} maxW={["75px", "100px"]} />

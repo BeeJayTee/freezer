@@ -18,10 +18,11 @@ const Header = () => {
         h={"50vw"}
         w={"50vw"}
         bg={"brand.darkGreen"}
+        opacity={"75%"}
         rounded={"full"}
         position={"absolute"}
         left={"60%"}
-        top={-200}
+        top={[-50, -75, -200]}
         ml={"-30vw"}
       ></Box>
       <Box
@@ -41,9 +42,18 @@ const Header = () => {
         top={100}
         zIndex={"100"}
       >
-        <Heading fontSize={["100px"]} color={"brand.dark"}>
-          This is a Freezer Inventory App
-        </Heading>
+        <Box display={"flex"} height={"100%"}>
+          <Heading
+            fontSize={["5xl", "6xl", "7xl", "8xl"]}
+            color={"brand.dark"}
+            mt={["-50px", "-50px", 0]}
+            textAlign={["center", "center", "right"]}
+            pl={[0, 0, 0, 0, 64]}
+            pt={[0, 0, 0, 0, 16]}
+          >
+            This is a Freezer Inventory App
+          </Heading>
+        </Box>
       </Box>
     </Box>
   );
