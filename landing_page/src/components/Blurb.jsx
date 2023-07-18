@@ -19,7 +19,7 @@ const Blurb = () => {
       as="section"
       w={["full", "full", "75%", "50%"]}
       mx={"auto"}
-      minH={"500px"}
+      minH={"300px"}
       px={[4, 4, 0]}
     >
       <VisibilitySensor onChange={(e) => handleChange(e)}>
