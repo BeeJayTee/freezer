@@ -35,7 +35,7 @@ const Stats = () => {
                   80%
                 </CircularProgressLabel>
               </CircularProgress>
-              <Text color={"white"} fontSize={"xl"}>
+              <Text color={"white"} fontSize={"md"} fontWeight={"semibold"}>
                 More Organized
               </Text>
             </Flex>
@@ -49,7 +49,7 @@ const Stats = () => {
                   60%
                 </CircularProgressLabel>
               </CircularProgress>
-              <Text color={"white"} fontSize={"xl"}>
+              <Text color={"white"} fontSize={"md"} fontWeight={"semibold"}>
                 Grocery Budget Saved
               </Text>
             </Flex>
@@ -63,7 +63,7 @@ const Stats = () => {
                   40%
                 </CircularProgressLabel>
               </CircularProgress>
-              <Text color={"white"} fontSize={"xl"}>
+              <Text color={"white"} fontSize={"md"} fontWeight={"semibold"}>
                 More Free Time
               </Text>
             </Flex>
@@ -76,7 +76,7 @@ const Stats = () => {
           align={["center", "center", "flex-start", "flex-start", "flex-start"]}
           direction={"column"}
           rowGap={4}
-          pt={[8, 8, 0, 0, 0]}
+          py={[8, 8, 0, 0, 0]}
         >
           <Heading
             as={"h2"}
@@ -86,7 +86,11 @@ const Stats = () => {
           >
             Bring the Family Together... <span id="more-title">More</span>
           </Heading>
-          <List fontSize={"lg"} color={"brand.dark"} spacing={3}>
+          <List
+            fontSize={["sm", "md", "lg"]}
+            color={"brand.dark"}
+            spacing={[1, 2, 3]}
+          >
             <ListItem>
               <ListIcon as={BiLogInCircle} color={"brand.green"} />
               Save time when meal planning.
