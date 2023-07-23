@@ -27,7 +27,7 @@ const CallToAction = () => {
           Checkout the Freezer App
         </Heading>
         <Link
-          href="#"
+          href="https://freezer-app.thebrandontucker.com/"
           fontSize={["sm", "sm", "md", "lg"]}
           border={["1px", "2px"]}
           color={"brand.darkGreen"}
